@@ -1,0 +1,136 @@
+{
+  "entities": {
+    "Promotion": {
+      "title": "Promotion",
+      "description": "Represents a product promotion or flash sale.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Promotion title" },
+        "description": { "type": "string", "description": "Promotion description" },
+        "discount": { "type": "number", "description": "Discount percentage or amount" },
+        "startDate": { "type": "string", "format": "date", "description": "Start date" },
+        "endDate": { "type": "string", "format": "date", "description": "End date" },
+        "productId": { "type": "string", "description": "Linked product ID" },
+        "isActive": { "type": "boolean", "description": "Is promotion active" }
+      },
+      "required": ["title", "discount", "startDate", "endDate"]
+    },
+    "BulkMessage": {
+      "title": "BulkMessage",
+      "description": "Represents a bulk message sent to all users.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Message title" },
+        "message": { "type": "string", "description": "Message content" },
+        "sentAt": { "type": "string", "format": "date", "description": "Sent date and time" },
+        "targetUsersCount": { "type": "number", "description": "Number of users reached" }
+      },
+      "required": ["title", "message", "sentAt"]
+    },
+    "Offer": {
+      "title": "Offer",
+      "description": "Represents a user offer.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Offer title" },
+        "type": { "type": "string", "description": "Offer type (flat, %, BOGO, etc.)" },
+        "value": { "type": "number", "description": "Offer value" },
+        "isActive": { "type": "boolean", "description": "Is offer active" }
+      },
+      "required": ["title", "type", "value"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Represents a user profile.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "mobile": { "type": "string" },
+        "address": { "type": "string" },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "fullAddress": { "type": "string" },
+              "isDefault": { "type": "boolean" }
+            }
+          }
+        },
+        "isBlocked": { "type": "boolean" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Represents a customer order.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "mobile": { "type": "string" },
+        "address": { "type": "string" },
+        "note": { "type": "string" },
+        "total": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "productName": { "type": "string" },
+              "productPrice": { "type": "number" },
+              "quantity": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Represents a user notification.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The ID of the user this notification belongs to" },
+        "title": { "type": "string", "description": "Short title of the notification" },
+        "message": { "type": "string", "description": "Short message content" },
+        "type": { "type": "string", "description": "Type of activity (e.g., order, status, profile, etc.)" },
+        "isRead": { "type": "boolean", "description": "Read/unread state" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the notification was created" }
+      },
+      "required": ["userId", "title", "message", "type", "isRead", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User profiles"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Customer orders"
+    },
+    "/promotions/{promotionId}": {
+      "schema": { "$ref": "Promotion" },
+      "description": "Promotions collection"
+    },
+    "/bulkMessages/{messageId}": {
+      "schema": { "$ref": "BulkMessage" },
+      "description": "Bulk messages collection"
+    },
+    "/offers/{offerId}": {
+      "schema": { "$ref": "Offer" },
+      "description": "Offers collection"
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "Notification" },
+      "description": "User notifications"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "REK RADIANT TRADERS",
+  "description": "একটি সম্পূর্ণ বাংলা ই-কমার্স ওয়েবসাইট যা মোবাইল-ফার্স্ট ডিজাইন এবং ফায়ারবেজ দ্বারা পরিচালিত।",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

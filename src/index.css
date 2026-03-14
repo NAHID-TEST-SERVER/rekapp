@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary-color, #10b981);
+  --color-secondary: var(--secondary-color, #2563eb);
+  --font-sans: "Hind Siliguri", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #10b981;
+  --secondary-color: #2563eb;
+  --header-color: #ffffff;
+  --button-color: #10b981;
+}
+
+/* Global Compact UI Scaling */
+html {
+  font-size: 10px; /* 1rem = 10px. This scales down all rem-based padding, margin, width, height */
+}
+
+body {
+  @apply bg-gray-50 text-gray-900;
+  font-family: var(--font-sans);
+  font-size: 10px; /* Default text size */
+  line-height: 1.4;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.row {
+  width: 98%;
+  height: 25px;
+  overflow: hidden;
+}
+
+/* Override Tailwind text sizes to be compact but maintain hierarchy */
+.text-xs { font-size: 9px; line-height: 1.2; }
+.text-sm { font-size: 10px; line-height: 1.4; }
+.text-base { font-size: 10px; line-height: 1.4; }
+.text-lg { font-size: 11px; line-height: 1.4; }
+.text-xl { font-size: 12px; line-height: 1.4; }
+.text-2xl { font-size: 14px; line-height: 1.4; }
+.text-3xl { font-size: 16px; line-height: 1.4; }
+.text-4xl { font-size: 18px; line-height: 1.4; }
+
+/* Make all buttons compact globally - but allow overrides */
+button:not(.no-compact) {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 10px;
+  border-radius: 0.5rem;
+  min-height: 28px;
+}
+
+/* Compact inputs and textareas - but allow overrides */
+input:not(.no-compact), select:not(.no-compact), textarea:not(.no-compact) {
+  padding: 0.5rem 0.75rem;
+  font-size: 10px;
+  border-radius: 0.5rem;
+  min-height: 28px;
+}
+
+/* Reduce all large paddings and margins globally - removed !important to allow Tailwind overrides */
+.p-4, .p-5, .p-6, .p-8, .p-10 { padding: 1rem; }
+.py-4, .py-5, .py-6, .py-8 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.px-4, .px-5, .px-6, .px-8 { padding-left: 1rem; padding-right: 1rem; }
+.m-4, .m-5, .m-6, .m-8, .m-10 { margin: 1rem; }
+.my-4, .my-5, .my-6, .my-8 { margin-top: 0.75rem; margin-bottom: 0.75rem; }
+.mx-4, .mx-5, .mx-6, .mx-8 { margin-left: 1rem; margin-right: 1rem; }
+.gap-4, .gap-6, .gap-8 { gap: 0.75rem; }
+.space-y-4 > * + *, .space-y-6 > * + *, .space-y-8 > * + * { margin-top: 0.75rem; }
+.mb-4, .mb-6, .mb-8 { margin-bottom: 0.75rem; }
+.mt-4, .mt-6, .mt-8 { margin-top: 0.75rem; }
+
+/* Reduce border radius globally - removed !important */
+.rounded-2xl, .rounded-3xl, .rounded-\[40px\] { border-radius: 0.75rem; }
+.rounded-xl { border-radius: 0.5rem; }
+
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+}
+
+.card-shadow {
+  box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full;
+}
